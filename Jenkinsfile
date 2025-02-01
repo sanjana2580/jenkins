@@ -36,13 +36,13 @@ pipeline {
         }
         stage('tag'){
             steps{
-                sh 'docker tag backup sanjana225/mock'
+                sh 'docker tag backup sanjana255/mock'
             }
         }
         stage('push'){
             steps{
-                sh 'echo "Biradar@24" | docker login -u "sanjana225" --password-stdin'
-                sh 'docker push sanjana225/mock'
+                sh 'echo "Biradar@24" | docker login -u "sanjana255" --password-stdin'
+                sh 'docker push sanjana255/mock'
             }
         }
     }
