@@ -1,9 +1,9 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage('docker install'){
-            steps{ 
+    stages {
+        stage('Install Docker') {
+            steps {
                 script {
                     def dockerInstalled = sh(script: 'which docker', returnStatus: true) == 0
                     if (!dockerInstalled) {
@@ -18,6 +18,7 @@ pipeline{
                 }
             }
         }
+
         stage('pull'){
             steps{ 
                 sh 'docker pull nginx'
@@ -35,13 +36,12 @@ pipeline{
         }
         stage('tag'){
             steps{
-                sh 'docker tag backup sanjana255/mock'
+                sh 'docker tag backup kulashekaralwarn/mock'
             }
         }
         stage('push'){
             steps{
-                sh 'echo "Biradar@24" | docker login -u "sanjana225" --password-stdin'
-                sh 'docker push sanjana255/mock'
+                sh 'docker push kulashekaralwarn/mock'
             }
         }
     }
@@ -52,5 +52,5 @@ pipeline{
         success{
             sh 'docker rm -f chandu'
         }
-    } 
+    }
 }
