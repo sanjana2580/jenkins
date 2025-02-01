@@ -15,6 +15,7 @@ pipeline{
                         sudo usermod -aG docker jenkins
                         '''
                     }
+                }
             }
         }
         stage('pull'){
@@ -39,7 +40,7 @@ pipeline{
         }
         stage('push'){
             steps{
-                 sh 'echo "Biradar@24" | docker login -u "sanjana225" --password-stdin'
+                sh 'echo "Biradar@24" | docker login -u "sanjana225" --password-stdin'
                 sh 'docker push sanjana255/mock'
             }
         }
@@ -51,6 +52,5 @@ pipeline{
         success{
             sh 'docker rm -f chandu'
         }
-    }
-    
+    } 
 }
