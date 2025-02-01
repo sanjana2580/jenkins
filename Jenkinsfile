@@ -26,22 +26,23 @@ pipeline {
         }
         stage('run'){
             steps{
-                sh 'docker run -it -d --name chandu -p 8000:80 nginx'
+                sh 'docker run -it -d --name sanjana -p 8000:80 nginx'
             }
         }
         stage('backup'){
             steps{
-                sh 'docker commit chandu backup'
+                sh 'docker commit sanjana backup'
             }
         }
         stage('tag'){
             steps{
-                sh 'docker tag backup kulashekaralwarn/mock'
+                sh 'docker tag backup sanjana225/mock'
             }
         }
         stage('push'){
             steps{
-                sh 'docker push kulashekaralwarn/mock'
+                sh 'echo "Biradar@24" | docker login -u "sanjana225" --password-stdin'
+                sh 'docker push sanjana225/mock'
             }
         }
     }
@@ -50,7 +51,7 @@ pipeline {
             sh 'docker rmi -f nginx'
         }
         success{
-            sh 'docker rm -f chandu'
+            sh 'docker rm -f sanjana'
         }
     }
 }
